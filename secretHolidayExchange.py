@@ -1,9 +1,19 @@
-import numpy as np
+import random
 
 people = []
 
-y = np.random.choice(people, len(people)//2, replace=False)
+# Ensure the list has an even number of people
+if len(people) % 2 != 0:
+    raise ValueError("The number of people must be even for proper pairing.")
 
-people_prime = list(set(people) - set(y))
+pairs = []
 
-print (list(zip(people_prime, y)))
+while people:
+    # Randomly select two people from the list and pair them
+    person1 = random.choice(people)
+    people.remove(person1)
+    person2 = random.choice(people)
+    people.remove(person2)
+    pairs.append((person1, person2))
+
+print(pairs)
